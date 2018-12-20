@@ -1,0 +1,38 @@
+.header{
+    border-bottom: 1px solid #e3e3e3;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+.post{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    border: 1px solid #e3e3e3;
+    margin: 10px;
+    cursor: pointer;
+}
+.post-list{
+    margin-top: 20px;
+}
+.author{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px auto;
+}
+.author img{
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.title p{
+    font-size: 15px;
+    font-weight: 700;
+    font-family: sans-serif;
+    margin: 10px 0px;
+    margin-left: -5px;
+}
+body{
+    margin: 0px;
+}
