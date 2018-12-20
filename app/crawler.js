@@ -1,21 +1,39 @@
-var request = require('request-promise-native');
-var cheerio = require('cheerio');
+let request = require('request-promise-native');
+let cheerio = require('cheerio');
 
-var options = {
+let crawler = {}
+let options = {
     uri: 'https://dev.to',
     transform: function (body) {
         return cheerio.load(body);
     }
 };
 
-var crawler = request(options)
+crawler.fetchTags = request({uri:"https://dev.to/tags",transform:options.transform})
+    .then(function($){
+        let tags = []
+        $("#articles-list").children().each((i, e) => {
+            let eachTag = {
+                name:$(e).find(".tag-show-link h2").text().trim(),
+                backgroundColor: $(e).attr("style"),
+                color: $(e).find(".tag-show-link").attr("style")
+            }
+            tags.push(eachTag);            
+        })
+        return tags;
+    })
+    .catch(function (err) {
+        console.log(err);
+    })
+
+crawler.fetchHome = request(options)
     .then(function ($) {
         let topPosts = []
         $("#substories").children().each((i, e) => {
             let eachPost = {
                 title: $(e).find(".index-article-link .content h3").text().trim(),
                 author: $(e).find("h4 a").text().trim(),
-                authorImage:$(e).find(".small-pic img").attr("src"),
+                authorImage: $(e).find(".small-pic img").attr("src"),
                 link: "https://dev.to" + $(e).children(".index-article-link").attr("href")
             }
             topPosts.push(eachPost);
@@ -23,7 +41,7 @@ var crawler = request(options)
         return topPosts
     })
     .catch(function (err) {
-        // Crawling failed or Cheerio choked...
+        console.log(err);
     })
 
 module.exports = crawler;
