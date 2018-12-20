@@ -34,9 +34,9 @@
                 <div class="tags">
                     {{#each tags}}
                         {{#if backgroundColor}}
-                            <div class="tag" style="{{backgroundColor}}{{color}}">
+                            <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
                         {{else}}
-                            <div class="tag">
+                            <div class="tag" onclick="getTag(event,'{{name}}')">
                         {{/if}}
                                 <p>{{name}}</p>
                             </div>
@@ -47,7 +47,7 @@
     </script>
     <script id="tag" type="text/x-handlebars-template">
         {{#each tags}}
-            <div class="tag" style="{{backgroundColor}}{{color}}">
+            <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
                 <p>{{name}}</p>
             </div>  
         {{/each}}

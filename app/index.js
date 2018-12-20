@@ -5,10 +5,9 @@ let tags;
 
 ipcRenderer.on('loadNewPosts', (event) => {    
     crawler.fetchHome.then((data)=>{
-        console.log(fillColor(data))
         const source = document.getElementById("post").innerHTML;
         const template = handlebars.compile(source, { strict: true });
-        const result = template({posts:data}); 
+        const result = template({posts:fillColor(data)}); 
         document.getElementById("post-list").innerHTML = result; 
     })
 });
@@ -24,6 +23,16 @@ ipcRenderer.on('loadTags', (event) => {
 
 function openLink(url) {
     shell.openExternal(url)
+}
+function getTag(e,tag){
+    e.stopPropagation();
+    tag = tag.replace(/#/g,'');
+    crawler.fetchFeedByTag(tag).then((data)=>{
+        const source = document.getElementById("post").innerHTML;
+        const template = handlebars.compile(source, { strict: true });
+        const result = template({posts:fillColor(data)}); 
+        document.getElementById("post-list").innerHTML = result;
+    })
 }
 
 function fillColor(posts){
