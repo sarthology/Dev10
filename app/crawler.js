@@ -40,9 +40,11 @@ function requestFeed(options) {
                     let tagsArray = []
                     
                     $(e).find(".tags").children().each((i,e)=>{
-                    tagsArray.push({name:$(e).find('.tag').text().trim()});
+                        tagsArray.push({name:$(e).find('.tag').text().trim()});
                     });
-
+                    
+                    $(e).find(".index-article-link .content h3").children("span").remove()
+                    
                     let eachPost = {
                         title: $(e).find(".index-article-link .content h3").text().trim(),
                         author: $(e).find("h4 a").text().trim(),

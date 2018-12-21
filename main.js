@@ -9,7 +9,8 @@ var mb = menubar({
     icon: path.join(__dirname, '/icons/logo.png'),
     width: 360,
     height: 500,
-    tooltip: "dev 10"
+    tooltip: "dev 10",
+    preloadWindow: true
 })
 
 mb.on('ready', function ready() {

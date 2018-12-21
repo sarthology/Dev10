@@ -2,8 +2,15 @@
     border-bottom: 1px solid #e3e3e3;
     font-family: sans-serif;
     font-weight: bold;
+    position: fixed;
+    width: 100%;
+    background: white;
+    top: 0;
+    cursor: pointer;
 }
-
+body::-webkit-scrollbar {
+    display: none;
+}
 .header h2{
     margin: 10px;
 }
@@ -52,7 +59,7 @@ body {
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
-    margin: 10px;
+    margin-top: 60px;
 }
 
 .tags::-webkit-scrollbar {

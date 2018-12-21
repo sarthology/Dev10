@@ -32,6 +32,7 @@ function getTag(e,tag){
         const template = handlebars.compile(source, { strict: true });
         const result = template({posts:fillColor(data)}); 
         document.getElementById("post-list").innerHTML = result;
+        window.scrollTo(0,0);
     })
 }
 
