@@ -50,7 +50,8 @@ function requestFeed(options) {
                         author: $(e).find("h4 a").text().trim(),
                         authorImage: $(e).find(".small-pic img").attr("src"),
                         link: "https://dev.to" + $(e).children(".index-article-link").attr("href"),
-                        tags:tagsArray
+                        tags:tagsArray,
+                        saved:false
                     }
                     if(eachPost.title) topPosts.push(eachPost);
                 });

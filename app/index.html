@@ -11,47 +11,23 @@
 
 <body>
     <div class="header">
-        <h2>DEV <span>10</span></h2>
+        <div class="logo">
+            <img src="../icons/logo.svg">
+        </div>
+        <div class="settings">
+            <img class="piggy-bank" alt="Piggy Bank" src="../icons/pig.png" onclick="openPiggyList()">
+            <div class="notification"></div>
+            <img class="control" src="../icons/controls.png">
+        </div>
     </div>
-    <div class="tags" id="tags">
-        
+    <div class="tags" id="tags">    
     </div>
     <div id="post-list">
-
+        <div class="loader">
+            <img src="../icons/loader-2.gif">
+        </div>
     </div>
     <script src="index.js"></script>
-    <script id="post" type="text/x-handlebars-template">
-        {{#each posts}}
-            <div class="post" onclick="openLink('{{link}}')">
-                <div class="post-info">
-                    <div class="author">
-                        <img src="{{authorImage}}" alt="">
-                    </div>
-                    <div class="title">
-                        <p>{{title}}</p>
-                    </div>
-                </div>
-                <div class="tags">
-                    {{#each tags}}
-                        {{#if backgroundColor}}
-                            <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
-                        {{else}}
-                            <div class="tag" onclick="getTag(event,'{{name}}')">
-                        {{/if}}
-                                <p>{{name}}</p>
-                            </div>
-                    {{/each}}
-                </div>
-            </div>   
-        {{/each}}
-    </script>
-    <script id="tag" type="text/x-handlebars-template">
-        {{#each tags}}
-            <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
-                <p>{{name}}</p>
-            </div>  
-        {{/each}}
-    </script>
 </body>
 
 </html>
