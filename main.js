@@ -23,5 +23,8 @@ mb.on('after-create-window', function () {
 })
 mb.on('after-show', function () {
     mb.window.webContents.send("loadNewPosts")
-
 })
+
+ipcMain.on('quit', (event, arg) => {
+    mb.app.quit()
+  })

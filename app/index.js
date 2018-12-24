@@ -4,8 +4,14 @@ const { ipcRenderer , shell } = require('electron');
 const home = require('./views/home');
 const piggyList = require('./views/piggyList');
 const Store = require('electron-store');
-const store = new Store();
+const { remote } = require('electron')
+const { Menu, MenuItem } = remote;
 let tags,currentPosts,currentPage;
+
+const store = new Store();
+const menu = new Menu()
+
+menu.append(new MenuItem({ label: 'Quit', click() { ipcRenderer.send('quit') }  }))
 
 //Routes 
 function goHome(){
@@ -111,6 +117,10 @@ function sendToast(type){
         document.getElementById("toastType").innerText = "Removed from";
         document.getElementsByClassName("toast")[0].className += " toast-enter" 
     }
+}
+function settings(e) {
+    e.preventDefault()
+    menu.popup({ window: remote.getCurrentWindow() })
 }
 
 // Internal View Changer
