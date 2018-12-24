@@ -5,7 +5,7 @@ const home = require('./views/home');
 const piggyList = require('./views/piggyList');
 const Store = require('electron-store');
 const store = new Store();
-let tags,currentPosts,currentPage,view;
+let tags,currentPosts,currentPage;
 
 //Routes 
 function goHome(){
@@ -21,8 +21,6 @@ function goHome(){
     .then(()=>{    
         fillLoader();
         crawler.fetchHome().then((data)=>{
-            console.table(currentPosts)
-            console.log(data);
             fillPosts(data);
         })
     })
@@ -31,6 +29,7 @@ function goPiggyList(){
     currentPage = "piggy-list";
     currentPosts = null;
     document.getElementById("view").innerHTML = piggyList.body; 
+    fillSavedTags()
 }
 
 // Main porgram calls
@@ -38,6 +37,7 @@ ipcRenderer.on('loadNewPosts', (event) => {
     goHome();
     checkNotification();
 });
+
 // Event handlers
 function openLink(url) {
     shell.openExternal(url)
@@ -45,9 +45,14 @@ function openLink(url) {
 function getTag(e,tag){
     e.stopPropagation();
     fillLoader()
-    crawler.fetchFeedByTag(tag.replace(/#/g,'')).then((data)=>{
-        fillPosts(data);
-    })
+    if(currentPage==="home"){
+        crawler.fetchFeedByTag(tag.replace(/#/g,'')).then((data)=>{
+            fillPosts(data);
+        })
+    }
+    else{
+        fillPosts(filterByTags(tag));
+    }
 }
 function savePost(e,i){
     e.stopPropagation();
@@ -115,7 +120,6 @@ function fillLoader(){
 }
 function fillPosts(data){
     currentPosts = data;
-    console.table(data);
     const template = handlebars.compile(home.post, { strict: true });
     const result = template({posts:fillColor(data)}); 
     document.getElementById("post-list").innerHTML = result; 
@@ -125,6 +129,15 @@ function fillTags(data){
     const template = handlebars.compile(home.tag, { strict: true });
     const result = template({tags:data}); 
     document.getElementById("tags").innerHTML = result; 
+}
+function fillSavedTags(){
+    tags= []
+    let posts = store.get('posts');
+    posts.forEach(post=>{
+        tags = tags.concat(post.tags);
+        tags = [...new Set(tags.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
+    })    
+    fillTags(tags);
 }
 function hidePiggyList(){
     if(document.getElementsByClassName("piggy-list")[0]) {
@@ -168,4 +181,8 @@ function filterSaved(posts){
         });
         return post;
     })
+}
+function filterByTags(selectedTag){    
+    let posts = store.get("posts");
+    return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e=>!e))
 }

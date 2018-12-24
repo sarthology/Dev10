@@ -44,7 +44,11 @@ home.post =`{{#each posts}}
 {{/each}}`
 
 home.tag =`{{#each tags}}
+{{#if backgroundColor}}
     <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
+{{else}}
+    <div class="tag" onclick="getTag(event,'{{name}}')">
+{{/if}}
         <p>{{name}}</p>
     </div>  
 {{/each}}`

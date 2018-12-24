@@ -21,7 +21,6 @@ crawler.fetchTags =()=>{
                 }
                 tags.push(eachTag);            
             })
-            console.table(tags)
             return tags;
         })
         .catch(function (err) {
@@ -58,7 +57,6 @@ function requestFeed(options) {
                     }
                     if(eachPost.title) topPosts.push(eachPost);
                 });
-                console.table(topPosts);
                 return topPosts.slice(0,10)
             })
             .catch(function (err) {
