@@ -1,5 +1,14 @@
-let view={};
-view.post =`{{#each posts}}
+let home={};
+
+home.body = `<div class="tags" id="tags">    
+        </div>
+        <div id="post-list">
+            <div class="loader">
+                <img src="../icons/loader-2.gif">
+            </div>
+        </div>`;
+
+home.post =`{{#each posts}}
     <div class="post" onclick="openLink('{{link}}')">
         <div class="post-info">
             <div class="author">
@@ -24,9 +33,9 @@ view.post =`{{#each posts}}
             </div>
             <div class="save-to-piggy">
                 {{#if saved}}
-                    <div class="pig-saved" onclick="">
+                    <div class="pig-true" onclick="savePost(event,'{{@index}}')">
                 {{else}}
-                    <div class="pig" onclick="savePost(event,'{{@index}}')">
+                    <div class="pig-false" onclick="savePost(event,'{{@index}}')">
                 {{/if}}
                     </div>
             </div>
@@ -34,18 +43,14 @@ view.post =`{{#each posts}}
     </div>   
 {{/each}}`
 
-view.tag =`{{#each tags}}
+home.tag =`{{#each tags}}
     <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
         <p>{{name}}</p>
     </div>  
 {{/each}}`
 
-view.loader = `<div class="loader">
+home.loader = `<div class="loader">
 <img src="../icons/loader-2.gif">
 </div>`
 
-view.piggyList= `<div class="piggy-list">
-<img src="../icons/pig.png" alt="">
-<h2>Your Piggy List</h2>
-</div>`
-module.exports = view;
+module.exports = home;
