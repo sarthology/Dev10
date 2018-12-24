@@ -9,25 +9,28 @@ let options = {
     }
 };
 
-crawler.fetchTags = request({uri:"https://dev.to/tags",transform:options.transform})
-    .then(function($){
-        let tags = []
-        $("#articles-list").children().each((i, e) => {
-            let eachTag = {
-                name:$(e).find(".tag-show-link h2").text().trim(),
-                backgroundColor: $(e).attr("style"),
-                color: $(e).find(".tag-show-link").attr("style")
-            }
-            tags.push(eachTag);            
+crawler.fetchTags =()=>{
+   return request({uri:"https://dev.to/tags",transform:options.transform})
+        .then(function($){
+            let tags = []
+            $("#articles-list").children().each((i, e) => {
+                let eachTag = {
+                    name:$(e).find(".tag-show-link h2").text().trim(),
+                    backgroundColor: $(e).attr("style"),
+                    color: $(e).find(".tag-show-link").attr("style")
+                }
+                tags.push(eachTag);            
+            })
+            console.table(tags)
+            return tags;
         })
-        return tags;
-    })
-    .catch(function (err) {
-        console.log(err);
-    })
+        .catch(function (err) {
+            console.log(err);
+        })
+} 
 
     
-crawler.fetchHome = requestFeed(options)
+crawler.fetchHome = () => requestFeed(options)
 crawler.fetchFeedByTag = (tag)=>{
     return requestFeed({uri:"https://dev.to/t/"+tag,transform:options.transform})
 };
@@ -55,7 +58,8 @@ function requestFeed(options) {
                     }
                     if(eachPost.title) topPosts.push(eachPost);
                 });
-                return topPosts
+                console.table(topPosts);
+                return topPosts.slice(0,10)
             })
             .catch(function (err) {
                 console.log(err);

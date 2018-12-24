@@ -9,21 +9,27 @@ let tags,currentPosts,currentPage,view;
 
 //Routes 
 function goHome(){
+    currentPage = "home";
+    currentPosts = null
     document.getElementById("view").innerHTML = home.body; 
-
-    crawler.fetchTags
+    crawler.fetchTags()
     .then((data)=>{
         tags = data;
         fillTags(data);
+        return
     })
-    .then(()=>{
+    .then(()=>{    
         fillLoader();
-        crawler.fetchHome.then((data)=>{
+        crawler.fetchHome().then((data)=>{
+            console.table(currentPosts)
+            console.log(data);
             fillPosts(data);
         })
     })
 }
 function goPiggyList(){
+    currentPage = "piggy-list";
+    currentPosts = null;
     document.getElementById("view").innerHTML = piggyList.body; 
 }
 
@@ -32,8 +38,6 @@ ipcRenderer.on('loadNewPosts', (event) => {
     goHome();
     checkNotification();
 });
-
-
 // Event handlers
 function openLink(url) {
     shell.openExternal(url)
@@ -47,30 +51,40 @@ function getTag(e,tag){
 }
 function savePost(e,i){
     e.stopPropagation();
-    // Check if already saved
-    if(currentPosts[i].saved){
+    //Check Page type
+    if(currentPage==="home"){
+        // Check if already saved
+        if(currentPosts[i].saved){
+            let posts = store.get('posts');
+            posts = posts.filter(post => post.link !== currentPosts[i].link)
+            store.set("posts",posts);
+            sendToast("removed");
+            updatePosts(e,i);
+        }
+        else{
+            //If other post exists
+            if(store.get('posts')){
+                let posts = store.get('posts');
+                posts.push(currentPosts[i]);
+                store.set("posts",posts)
+                sendToast("saved");
+                updatePosts(e,i)
+            }
+            else{
+                let posts = [];
+                posts.push(currentPosts[i]);
+                store.set("posts",posts)
+                sendToast("saved");
+                updatePosts(e,i)
+            }
+        }
+    }
+    else{
         let posts = store.get('posts');
         posts = posts.filter(post => post.link !== currentPosts[i].link)
         store.set("posts",posts);
         sendToast("removed");
-        updatePosts(e,i);
-    }
-    else{
-        //If other post exists
-        if(store.get('posts')){
-            let posts = store.get('posts');
-            posts.push(currentPosts[i]);
-            store.set("posts",posts)
-            sendToast("saved");
-            updatePosts(e,i)
-        }
-        else{
-            let posts = [];
-            posts.push(currentPosts[i]);
-            store.set("posts",posts)
-            sendToast("saved");
-            updatePosts(e,i)
-        }
+        e.target.closest(".post").remove();        
     }
 }
 function openPiggyList(){
@@ -101,6 +115,7 @@ function fillLoader(){
 }
 function fillPosts(data){
     currentPosts = data;
+    console.table(data);
     const template = handlebars.compile(home.post, { strict: true });
     const result = template({posts:fillColor(data)}); 
     document.getElementById("post-list").innerHTML = result; 
