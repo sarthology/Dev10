@@ -95,13 +95,14 @@ function savePost(e,i){
         posts = posts.filter(post => post.link !== currentPosts[i].link)
         store.set("posts",posts);
         sendToast("removed");
-        e.target.closest(".post").remove();        
+        e.target.closest(".post").remove(); 
+        fillSavedTags();
+        checkNotification();
     }
 }
 function openPiggyList(){
     goPiggyList()
     if(store.get('posts')){
-        console.table(store.get('posts'));
         fillPosts(store.get('posts'));
     }
 }
@@ -167,6 +168,7 @@ function updatePosts(e,i){
     currentPosts[i].saved = !currentPosts[i].saved;
     e.target.classList.remove("pig-"+!currentPosts[i].saved);
     e.target.classList.add("pig-"+currentPosts[i].saved);
+    checkNotification();
 }
 
 // Data Manipulators
@@ -185,7 +187,6 @@ function filterSaved(posts){
     return posts.map((post)=>{
         savedPosts.forEach(savedPost => {
             if(post.link === savedPost.link){
-                console.log("here");
                 post.saved = true;
             }
         });
