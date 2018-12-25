@@ -10,7 +10,7 @@ if(os.platform()==="win32"){
         width: 360,
         height: 500,
         tooltip: "Dev 10",
-        showOnAllWorkspaces: false
+        preloadWindow: true
     })
 }
 else{
@@ -20,7 +20,7 @@ else{
         width: 360,
         height: 500,
         tooltip: "Dev 10",
-        showOnAllWorkspaces: false
+        preloadWindow: true
     })
 }
 
