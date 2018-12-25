@@ -10,9 +10,8 @@ It's an app that shows the top post of Dev.to in your menubar.
 
 ## Feature
 
-<div align="center">
-  <img src="https://i.imgur.com/KE69o2J.png">
-</div>
+![](https://i.imgur.com/KE69o2J.png)
+
 
 1. Get top posts from Dev.to right in your Menubar.
 2. Check latest feed from top 100 tags on Dev.to.
