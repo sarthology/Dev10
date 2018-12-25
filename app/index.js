@@ -162,12 +162,14 @@ function hidePiggyList(){
 function checkNotification(){
     if(store.get('posts')){
         if(store.get('posts').length > 0 ){
-        document.getElementsByClassName("notification")[0].className += " circle";
+            document.getElementsByClassName("notification")[0].className += " circle";
+        }
+        else{
+            document.getElementsByClassName("notification")[0].classList.remove("circle");
         }
     }
     else{
         store.set('posts',[])
-        document.getElementsByClassName("notification")[0].classList.remove("circle");
     }
 }
 function updatePosts(e,i){

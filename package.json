@@ -13,6 +13,7 @@
     "electron-store": "^2.0.0",
     "handlebars": "^4.0.12",
     "menubar": "^5.2.3",
+    "os": "^0.1.1",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   },
