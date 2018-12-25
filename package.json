@@ -15,5 +15,8 @@
     "menubar": "^5.2.3",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "electron": "^4.0.0"
   }
 }

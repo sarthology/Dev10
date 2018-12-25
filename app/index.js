@@ -40,8 +40,8 @@ function goPiggyList(){
 
 // Main porgram calls
 ipcRenderer.on('loadNewPosts', (event) => {
-    goHome();
     checkNotification();
+    goHome();
 });
 
 // Event handlers
@@ -157,10 +157,13 @@ function hidePiggyList(){
     }
 }
 function checkNotification(){
-    if(store.get('posts').length>0){
+    if(store.get('posts')){
+        if(store.get('posts').length > 0 ){
         document.getElementsByClassName("notification")[0].className += " circle";
+        }
     }
     else{
+        store.set('posts',[])
         document.getElementsByClassName("notification")[0].classList.remove("circle");
     }
 }
