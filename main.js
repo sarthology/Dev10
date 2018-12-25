@@ -9,8 +9,8 @@ if(os.platform()==="win32"){
         icon: path.join(__dirname, '/icons/logowin.png'),
         width: 360,
         height: 500,
-        tooltip: "dev 10",
-        preloadWindow: true
+        tooltip: "Dev 10",
+        showOnAllWorkspaces: false
     })
 }
 else{
@@ -19,8 +19,8 @@ else{
         icon: path.join(__dirname, '/icons/logoTemplate.png'),
         width: 360,
         height: 500,
-        tooltip: "dev 10",
-        preloadWindow: true
+        tooltip: "Dev 10",
+        showOnAllWorkspaces: false
     })
 }
 
@@ -29,9 +29,8 @@ mb.on('ready', function ready() {
 })
 
 mb.on('after-create-window', function () {
-    mb.window.openDevTools();
     mb.window.webContents.on('did-finish-load', () => {
-        mb.window.webContents.send("loadTags")
+        mb.window.webContents.send("loadNewPosts")
     })
 })
 mb.on('after-show', function () {

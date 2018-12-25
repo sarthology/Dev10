@@ -11,6 +11,7 @@ let tags,currentPosts,currentPage;
 const store = new Store();
 const menu = new Menu()
 
+menu.append(new MenuItem({ label: 'Check for updates(v1.0.0)', click() { shell.openExternal("https://github.com/sarthology/Dev10/releases") }}))
 menu.append(new MenuItem({ label: 'Tweet ❤️ @Sarthology', click() { shell.openExternal("https://twitter.com/sarthology") }}))
 menu.append(new MenuItem({ label: 'Contribute', click() { shell.openExternal("https://github.com/sarthology/Dev10") }}))
 menu.append(new MenuItem({ type: 'separator' }))
