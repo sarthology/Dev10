@@ -1,4 +1,6 @@
-![Dev 10](https://i.imgur.com/UGrxkOc.png)
+<div align="center">
+  <img src="https://i.imgur.com/UGrxkOc.png">
+</div>
 
 ## Dev 10
 
@@ -7,7 +9,9 @@ It's an app that shows the top post of Dev.to in your menubar.
 [Download]()
 
 ## Feature
+
 ![](https://i.imgur.com/KE69o2J.png)
+
 
 1. Get top posts from Dev.to right in your Menubar.
 2. Check latest feed from top 100 tags on Dev.to.
@@ -19,9 +23,8 @@ It's an app that shows the top post of Dev.to in your menubar.
 
 Before running this locally you must have these installed
 
-+ Node.js
-+ npm
-+ Electronjs
++ Node
++ Electron
 
 ## Installing
 
@@ -31,8 +34,12 @@ It's build in electron so the process to start this is really easy
 2. `npm install electron -g`
 3. `electron .`
 
-that's it you see it running on the menubar
+that's it, you will see it running in your menubar.
 
 ## License
 
 MIT License
+
+## Author
+
+[Sarthak Sharma](https://twitter.com/sarthology)
