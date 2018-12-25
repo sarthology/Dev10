@@ -11,7 +11,10 @@ let tags,currentPosts,currentPage;
 const store = new Store();
 const menu = new Menu()
 
-menu.append(new MenuItem({ label: 'Quit', click() { ipcRenderer.send('quit') }  }))
+menu.append(new MenuItem({ label: 'Tweet ❤️ @Sarthology', click() { shell.openExternal("https://twitter.com/sarthology") }}))
+menu.append(new MenuItem({ label: 'Contribute', click() { shell.openExternal("https://github.com/sarthology/Dev10") }}))
+menu.append(new MenuItem({ type: 'separator' }))
+menu.append(new MenuItem({ label: 'Quit', click() { ipcRenderer.send('quit') }}))
 
 //Routes 
 function goHome(){

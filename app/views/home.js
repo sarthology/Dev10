@@ -1,6 +1,6 @@
 let home={};
 
-home.body = `<div class="tags" id="tags">    
+home.body = `<div class="tags" id="tags" style="min-height:35px">    
         </div>
         <div id="post-list">
             <div class="loader">
