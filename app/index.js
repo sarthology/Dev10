@@ -209,7 +209,7 @@ function updatePosts(e,i) {
 function fillColor(posts) {
     return filterSaved(posts.map((post) => {
         post.tags = post.tags.map((tag) => {
-            coloredTag = tags.filter(colorTag => colorTag.name === tag.name);
+            const coloredTag = tags.filter(colorTag => colorTag.name === tag.name);
             if (coloredTag.length > 0) return coloredTag[0];
             else return tag;
         });
