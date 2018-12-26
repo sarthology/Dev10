@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 const crawler = {};
 const options = {
     uri: 'https://dev.to',
-    transform: function (body) {
+    transform (body) {
         return cheerio.load(body);
     }
 };
