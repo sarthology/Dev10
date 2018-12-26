@@ -63,7 +63,6 @@ function goHome() {
                 });
         });
 }
-
 function goPiggyList(){
     currentPage = 'piggy-list';
     currentPosts = null;
