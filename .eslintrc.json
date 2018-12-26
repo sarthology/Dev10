@@ -43,6 +43,7 @@
     ],
     "block-scoped-var": "warn",
     "prefer-const": "warn",
+    "prefer-arrow-callback": "error",
     "default-case": "warn",
     "require-await": "error",
     "yoda": "warn",
