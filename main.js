@@ -5,7 +5,7 @@ var path = require('path');
 const { ipcMain } = require('electron');
 const os = require('os')
 
-if(os.platform() === "win32") {
+if (os.platform() === "win32") {
     var mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
         icon: path.join(__dirname, '/icons/logowin.png'),
@@ -25,7 +25,7 @@ if(os.platform() === "win32") {
     })
 }
 
-mb.on('ready', function ready() {
+mb.on('ready', function() {
     console.log('app is ready');
 })
 
