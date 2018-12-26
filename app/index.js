@@ -1,3 +1,5 @@
+'use strict';
+
 let crawler = require('./crawler');
 const handlebars = require('handlebars');
 const { ipcRenderer, shell } = require('electron');

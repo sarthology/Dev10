@@ -1,3 +1,5 @@
+'use strict';
+
 let home = {};
 
 home.body = `<div class="tags" id="tags" style="min-height:35px">    

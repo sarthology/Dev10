@@ -1,3 +1,5 @@
+'use strict';
+
 let piggyList= {};
 
 piggyList.body = `<div class="piggy-list">

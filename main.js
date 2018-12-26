@@ -1,3 +1,5 @@
+'use strict';
+
 var menubar = require('menubar');
 var path = require('path');
 const { ipcMain } = require('electron');
