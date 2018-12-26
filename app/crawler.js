@@ -13,7 +13,7 @@ const options = {
 
 crawler.fetchTags = () => {
     return request({ uri: 'https://dev.to/tags', transform: options.transform })
-        .then(function($) {
+        .then(($) => {
             const tags = [];
             $('#articles-list').children().each((i, e) => {
                 const eachTag = {
@@ -25,7 +25,7 @@ crawler.fetchTags = () => {
             });
             return tags;
         })
-        .catch(function (err) {
+        .catch((err) => {
             console.log(err);
         });
 };
@@ -33,12 +33,12 @@ crawler.fetchTags = () => {
     
 crawler.fetchHome = () => requestFeed(options);
 crawler.fetchFeedByTag = tag => {
-    return requestFeed({ uri:'https://dev.to/t/' + tag, transform: options.transform });
+    return requestFeed({ uri: `https://dev.to/t/${tag}`, transform: options.transform });
 };
 
 function requestFeed(options) {
     return request(options)
-        .then(function ($) {
+        .then(($) => {
             const topPosts = [];
             $('#substories').children().each((i, e) => {
                 const tagsArray = [];
@@ -53,7 +53,7 @@ function requestFeed(options) {
                     title: $(e).find('.index-article-link .content h3').text().trim(),
                     author: $(e).find('h4 a').text().trim(),
                     authorImage: $(e).find('.small-pic img').attr('src'),
-                    link: 'https://dev.to' + $(e).children('.index-article-link').attr('href'),
+                    link: `https://dev.to${$(e).children('.index-article-link').attr('href')}`,
                     tags: tagsArray,
                     saved: false
                 };
@@ -62,7 +62,7 @@ function requestFeed(options) {
             });
             return topPosts.slice(0,10);
         })
-        .catch(function (err) {
+        .catch((err) => {
             console.log(err);
         });
 }     

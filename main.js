@@ -9,7 +9,7 @@ let mb;
 
 if (os.platform() === 'win32') {
     mb = menubar({
-        index: 'file://' + path.join(__dirname, '/app/index.html'),
+        index: `file://${path.join(__dirname, '/app/index.html')}`,
         icon: path.join(__dirname, '/icons/logowin.png'),
         width: 360,
         height: 500,
@@ -18,7 +18,7 @@ if (os.platform() === 'win32') {
     });
 } else {
     mb = menubar({
-        index: 'file://' + path.join(__dirname, '/app/index.html'),
+        index: `file://${path.join(__dirname, '/app/index.html')}`,
         icon: path.join(__dirname, '/icons/logoTemplate.png'),
         width: 360,
         height: 500,

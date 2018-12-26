@@ -200,8 +200,8 @@ function checkNotification() {
 }
 function updatePosts(e,i) {
     currentPosts[i].saved = !currentPosts[i].saved;
-    e.target.classList.remove('pig-' + !currentPosts[i].saved);
-    e.target.classList.add('pig-' + currentPosts[i].saved);
+    e.target.classList.remove(`pig-${!currentPosts[i].saved}`);
+    e.target.classList.add(`pig-${currentPosts[i].saved}`);
     checkNotification();
 }
 
