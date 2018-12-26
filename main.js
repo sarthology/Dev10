@@ -1,10 +1,14 @@
 'use strict';
 
-const menubar = require('menubar');
-const path = require('path');
+// DEPENDENCIES
 const { ipcMain } = require('electron');
+const menubar = require('menubar');
+
+// NATIVE IMPORTS
+const path = require('path');
 const os = require('os');
 
+// Global Variables
 let mb;
 
 if (os.platform() === 'win32') {

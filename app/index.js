@@ -1,16 +1,18 @@
 'use strict';
 
-const crawler = require('./crawler');
+// DEPENDENCIES
+const { ipcRenderer, remote, shell } = require('electron');
+const { Menu, MenuItem } = remote;
+const Store = require('electron-store');
 const handlebars = require('handlebars');
-const { ipcRenderer, shell } = require('electron');
+
+// MODULE IMPORTS
+const crawler = require('./crawler');
 const home = require('./views/home');
 const piggyList = require('./views/piggyList');
-const Store = require('electron-store');
-const { remote } = require('electron');
-const { Menu, MenuItem } = remote;
 
+// Global Variables
 let tags, currentPosts, currentPage;
-
 const store = new Store();
 const menu = new Menu();
 
@@ -63,7 +65,6 @@ function goHome() {
                 });
         });
 }
-
 function goPiggyList(){
     currentPage = 'piggy-list';
     currentPosts = null;
