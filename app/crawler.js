@@ -32,7 +32,7 @@ crawler.fetchTags = () => {
 
     
 crawler.fetchHome = () => requestFeed(options);
-crawler.fetchFeedByTag = (tag) => {
+crawler.fetchFeedByTag = tag => {
     return requestFeed({ uri:'https://dev.to/t/' + tag, transform: options.transform });
 };
 

@@ -50,7 +50,7 @@ function goHome() {
     document.getElementById('view').innerHTML = home.body; 
 
     crawler.fetchTags()
-        .then((data) => {
+        .then(data => {
             tags = data;
             fillTags(data);
             return;
@@ -58,7 +58,7 @@ function goHome() {
         .then(() => {    
             fillLoader();
             crawler.fetchHome()
-                .then((data) => {
+                .then(data => {
                     fillPosts(data);
                 });
         });
@@ -87,7 +87,7 @@ function getTag(e, tag) {
 
     if (currentPage === 'home') {
         crawler.fetchFeedByTag(tag.replace(/#/g, ''))
-            .then((data) => {
+            .then(data => {
                 fillPosts(data);
             });
     } else {
@@ -207,8 +207,8 @@ function updatePosts(e,i) {
 
 // Data Manipulators
 function fillColor(posts) {
-    return filterSaved(posts.map((post) => {
-        post.tags = post.tags.map((tag) => {
+    return filterSaved(posts.map(post => {
+        post.tags = post.tags.map(tag => {
             const coloredTag = tags.filter(colorTag => colorTag.name === tag.name);
             if (coloredTag.length > 0) return coloredTag[0];
             else return tag;
@@ -218,7 +218,7 @@ function fillColor(posts) {
 }
 function filterSaved(posts) {    
     const savedPosts = store.get('posts');
-    return posts.map((post) => {
+    return posts.map(post => {
         savedPosts.forEach(savedPost => {
             if (post.link === savedPost.link){
                 post.saved = true;
