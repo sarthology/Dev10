@@ -1,4 +1,4 @@
-let piggyList={};
+let piggyList= {};
 
 piggyList.body = `<div class="piggy-list">
         <img src="../icons/pig.png" alt="">

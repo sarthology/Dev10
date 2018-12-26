@@ -1,9 +1,9 @@
 var menubar = require('menubar');
 var path = require('path');
-const {ipcMain} = require('electron');
+const { ipcMain } = require('electron');
 const os = require('os')
 
-if(os.platform()==="win32"){
+if(os.platform() === "win32") {
     var mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
         icon: path.join(__dirname, '/icons/logowin.png'),
@@ -12,8 +12,7 @@ if(os.platform()==="win32"){
         tooltip: "Dev 10",
         preloadWindow: true
     })
-}
-else{
+} else {
     var mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
         icon: path.join(__dirname, '/icons/logoTemplate.png'),
@@ -33,10 +32,11 @@ mb.on('after-create-window', function () {
         mb.window.webContents.send("loadNewPosts")
     })
 })
+
 mb.on('after-show', function () {
     mb.window.webContents.send("loadNewPosts")
 })
 
 ipcMain.on('quit', (event, arg) => {
     mb.app.quit()
-  })
+})
