@@ -1,6 +1,6 @@
 'use strict';
 
-let crawler = require('./crawler');
+const crawler = require('./crawler');
 const handlebars = require('handlebars');
 const { ipcRenderer, shell } = require('electron');
 const home = require('./views/home');
@@ -108,13 +108,13 @@ function savePost(e,i) {
         } else {
             //If other post exists
             if (store.get('posts')) {
-                let posts = store.get('posts');
+                const posts = store.get('posts');
                 posts.push(currentPosts[i]);
                 store.set("posts",posts)
                 sendToast("saved");
                 updatePosts(e,i)
             } else {
-                let posts = [];
+                const posts = [];
                 posts.push(currentPosts[i]);
                 store.set("posts",posts)
                 sendToast("saved");
@@ -173,7 +173,7 @@ function fillTags(data) {
 }
 function fillSavedTags() {
     tags = []
-    let posts = store.get('posts');
+    const posts = store.get('posts');
     posts.forEach(post => {
         tags = tags.concat(post.tags);
         tags = [...new Set(tags.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
@@ -216,7 +216,7 @@ function fillColor(posts) {
     }));
 }
 function filterSaved(posts) {    
-    let savedPosts = store.get("posts");
+    const savedPosts = store.get("posts");
     return posts.map((post) => {
         savedPosts.forEach(savedPost => {
             if(post.link === savedPost.link){
@@ -227,6 +227,6 @@ function filterSaved(posts) {
     })
 }
 function filterByTags(selectedTag){    
-    let posts = store.get("posts");
+    const posts = store.get("posts");
     return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e))
 }

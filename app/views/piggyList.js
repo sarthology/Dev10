@@ -1,6 +1,6 @@
 'use strict';
 
-let piggyList= {};
+const piggyList= {};
 
 piggyList.body = `<div class="piggy-list">
         <img src="../icons/pig.png" alt="">

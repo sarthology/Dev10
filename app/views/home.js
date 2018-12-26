@@ -1,6 +1,6 @@
 'use strict';
 
-let home = {};
+const home = {};
 
 home.body = `<div class="tags" id="tags" style="min-height:35px">    
         </div>

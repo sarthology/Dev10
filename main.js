@@ -1,12 +1,14 @@
 'use strict';
 
-var menubar = require('menubar');
-var path = require('path');
+const menubar = require('menubar');
+const path = require('path');
 const { ipcMain } = require('electron');
 const os = require('os')
 
+let mb;
+
 if (os.platform() === "win32") {
-    var mb = menubar({
+    mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
         icon: path.join(__dirname, '/icons/logowin.png'),
         width: 360,
@@ -15,7 +17,7 @@ if (os.platform() === "win32") {
         preloadWindow: true
     })
 } else {
-    var mb = menubar({
+    mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
         icon: path.join(__dirname, '/icons/logoTemplate.png'),
         width: 360,
