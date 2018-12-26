@@ -18,19 +18,19 @@ const menu = new Menu();
 menu.append(new MenuItem({
     label: 'Check for updates(v1.0.0)',
     click() {
-        shell.openExternal("https://github.com/sarthology/Dev10/releases");
+        shell.openExternal('https://github.com/sarthology/Dev10/releases');
     }
 }));
 menu.append(new MenuItem({
     label: 'Tweet ❤️ @Sarthology',
     click() {
-        shell.openExternal("https://twitter.com/sarthology");
+        shell.openExternal('https://twitter.com/sarthology');
     }
 }));
 menu.append(new MenuItem({
     label: 'Contribute',
     click() {
-        shell.openExternal("https://github.com/sarthology/Dev10");
+        shell.openExternal('https://github.com/sarthology/Dev10');
     }
 }));
 menu.append(new MenuItem({
@@ -45,9 +45,9 @@ menu.append(new MenuItem({
 
 // Routes 
 function goHome() {
-    currentPage = "home";
+    currentPage = 'home';
     currentPosts = null;
-    document.getElementById("view").innerHTML = home.body; 
+    document.getElementById('view').innerHTML = home.body; 
 
     crawler.fetchTags()
         .then((data) => {
@@ -65,9 +65,9 @@ function goHome() {
 }
 
 function goPiggyList(){
-    currentPage = "piggy-list";
+    currentPage = 'piggy-list';
     currentPosts = null;
-    document.getElementById("view").innerHTML = piggyList.body; 
+    document.getElementById('view').innerHTML = piggyList.body; 
     fillSavedTags();
 }
 
@@ -85,7 +85,7 @@ function getTag(e, tag) {
     e.stopPropagation();
     fillLoader();
 
-    if (currentPage === "home") {
+    if (currentPage === 'home') {
         crawler.fetchFeedByTag(tag.replace(/#/g, ''))
             .then((data) => {
                 fillPosts(data);
@@ -98,36 +98,36 @@ function savePost(e,i) {
     e.stopPropagation();
 
     //Check Page type
-    if (currentPage === "home") {
+    if (currentPage === 'home') {
         // Check if already saved
         if (currentPosts[i].saved) {
             let posts = store.get('posts');
             posts = posts.filter(post => post.link !== currentPosts[i].link);
-            store.set("posts",posts);
-            sendToast("removed");
+            store.set('posts',posts);
+            sendToast('removed');
             updatePosts(e, i);
         } else {
             //If other post exists
             if (store.get('posts')) {
                 const posts = store.get('posts');
                 posts.push(currentPosts[i]);
-                store.set("posts",posts);
-                sendToast("saved");
+                store.set('posts',posts);
+                sendToast('saved');
                 updatePosts(e,i);
             } else {
                 const posts = [];
                 posts.push(currentPosts[i]);
-                store.set("posts",posts);
-                sendToast("saved");
-                updatePosts(e,i)
+                store.set('posts',posts);
+                sendToast('saved');
+                updatePosts(e,i);
             }
         }
     } else {
         let posts = store.get('posts');
-        posts = posts.filter(post => post.link !== currentPosts[i].link)
-        store.set("posts", posts);
-        sendToast("removed");
-        e.target.closest(".post").remove(); 
+        posts = posts.filter(post => post.link !== currentPosts[i].link);
+        store.set('posts', posts);
+        sendToast('removed');
+        e.target.closest('.post').remove(); 
         fillSavedTags();
         checkNotification();
     }
@@ -139,15 +139,15 @@ function openPiggyList() {
     }
 }
 function sendToast(type) {
-    document.getElementsByClassName("toast")[0].classList.remove("toast-enter");
-    void document.getElementsByClassName("toast")[0].offsetWidth;
+    document.getElementsByClassName('toast')[0].classList.remove('toast-enter');
+    void document.getElementsByClassName('toast')[0].offsetWidth;
 
-    if (type === "saved") {
-        document.getElementById("toastType").innerText = "Added to";
-        document.getElementsByClassName("toast")[0].className += " toast-enter";
-    } else if(type === "removed") {
-        document.getElementById("toastType").innerText = "Removed from";
-        document.getElementsByClassName("toast")[0].className += " toast-enter";
+    if (type === 'saved') {
+        document.getElementById('toastType').innerText = 'Added to';
+        document.getElementsByClassName('toast')[0].className += ' toast-enter';
+    } else if(type === 'removed') {
+        document.getElementById('toastType').innerText = 'Removed from';
+        document.getElementsByClassName('toast')[0].className += ' toast-enter';
     }
 }
 function settings(e) {
@@ -157,20 +157,20 @@ function settings(e) {
 
 // Internal View Changer
 function fillLoader() {
-    document.getElementById("post-list").innerHTML = home.loader;
+    document.getElementById('post-list').innerHTML = home.loader;
     window.scrollTo(0,0);
 }
 function fillPosts(data) {
     currentPosts = data;
     const template = handlebars.compile(home.post, { strict: true });
     const result = template({ posts: fillColor(data) }); 
-    document.getElementById("post-list").innerHTML = result; 
+    document.getElementById('post-list').innerHTML = result; 
     window.scrollTo(0,0);
 }
 function fillTags(data) {
     const template = handlebars.compile(home.tag, { strict: true });
     const result = template({ tags: data }); 
-    document.getElementById("tags").innerHTML = result; 
+    document.getElementById('tags').innerHTML = result; 
 }
 function fillSavedTags() {
     tags = [];
@@ -182,17 +182,17 @@ function fillSavedTags() {
     fillTags(tags);
 }
 function hidePiggyList() {
-    if (document.getElementsByClassName("piggy-list")[0]) {
-        document.getElementById("tags").setAttribute("style","margin-top:60px");
-        document.getElementsByClassName("piggy-list")[0].remove();
+    if (document.getElementsByClassName('piggy-list')[0]) {
+        document.getElementById('tags').setAttribute('style','margin-top:60px');
+        document.getElementsByClassName('piggy-list')[0].remove();
     }
 }
 function checkNotification() {
     if (store.get('posts')) {
         if (store.get('posts').length > 0 ) {
-            document.getElementsByClassName("notification")[0].className += " circle";
+            document.getElementsByClassName('notification')[0].className += ' circle';
         } else {
-            document.getElementsByClassName("notification")[0].classList.remove("circle");
+            document.getElementsByClassName('notification')[0].classList.remove('circle');
         }
     } else{
         store.set('posts',[]);
@@ -200,8 +200,8 @@ function checkNotification() {
 }
 function updatePosts(e,i) {
     currentPosts[i].saved = !currentPosts[i].saved;
-    e.target.classList.remove("pig-" + !currentPosts[i].saved);
-    e.target.classList.add("pig-" + currentPosts[i].saved);
+    e.target.classList.remove('pig-' + !currentPosts[i].saved);
+    e.target.classList.add('pig-' + currentPosts[i].saved);
     checkNotification();
 }
 
@@ -217,7 +217,7 @@ function fillColor(posts) {
     }));
 }
 function filterSaved(posts) {    
-    const savedPosts = store.get("posts");
+    const savedPosts = store.get('posts');
     return posts.map((post) => {
         savedPosts.forEach(savedPost => {
             if (post.link === savedPost.link){
@@ -228,6 +228,6 @@ function filterSaved(posts) {
     });
 }
 function filterByTags(selectedTag){    
-    const posts = store.get("posts");
+    const posts = store.get('posts');
     return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e));
 }
