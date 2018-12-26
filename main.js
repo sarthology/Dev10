@@ -29,13 +29,13 @@ mb.on('ready', function ready() {
     console.log('app is ready');
 })
 
-mb.on('after-create-window', function () {
+mb.on('after-create-window', function() {
     mb.window.webContents.on('did-finish-load', () => {
         mb.window.webContents.send("loadNewPosts")
     })
 })
 
-mb.on('after-show', function () {
+mb.on('after-show', function() {
     mb.window.webContents.send("loadNewPosts")
 })
 
