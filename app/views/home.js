@@ -1,4 +1,6 @@
-let home={};
+'use strict';
+
+const home = {};
 
 home.body = `<div class="tags" id="tags" style="min-height:35px">    
         </div>
@@ -41,7 +43,7 @@ home.post =`{{#each posts}}
             </div>
         </div>
     </div>   
-{{/each}}`
+{{/each}}`;
 
 home.tag =`{{#each tags}}
 {{#if backgroundColor}}
@@ -51,10 +53,10 @@ home.tag =`{{#each tags}}
 {{/if}}
         <p>{{name}}</p>
     </div>  
-{{/each}}`
+{{/each}}`;
 
 home.loader = `<div class="loader">
 <img src="../icons/loader-2.gif">
-</div>`
+</div>`;
 
 module.exports = home;
