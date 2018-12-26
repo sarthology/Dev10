@@ -6,69 +6,69 @@ const { ipcRenderer, shell } = require('electron');
 const home = require('./views/home');
 const piggyList = require('./views/piggyList');
 const Store = require('electron-store');
-const { remote } = require('electron')
+const { remote } = require('electron');
 const { Menu, MenuItem } = remote;
 
 let tags, currentPosts, currentPage;
 
 const store = new Store();
-const menu = new Menu()
+const menu = new Menu();
 
 // Add menu items
 menu.append(new MenuItem({
     label: 'Check for updates(v1.0.0)',
     click() {
-        shell.openExternal("https://github.com/sarthology/Dev10/releases")
+        shell.openExternal("https://github.com/sarthology/Dev10/releases");
     }
-}))
+}));
 menu.append(new MenuItem({
     label: 'Tweet ❤️ @Sarthology',
     click() {
-        shell.openExternal("https://twitter.com/sarthology")
+        shell.openExternal("https://twitter.com/sarthology");
     }
-}))
+}));
 menu.append(new MenuItem({
     label: 'Contribute',
     click() {
-        shell.openExternal("https://github.com/sarthology/Dev10")
+        shell.openExternal("https://github.com/sarthology/Dev10");
     }
-}))
+}));
 menu.append(new MenuItem({
     type: 'separator'
-}))
+}));
 menu.append(new MenuItem({
     label: 'Quit',
     click() {
-        ipcRenderer.send('quit')
+        ipcRenderer.send('quit');
     }
-}))
+}));
 
 // Routes 
 function goHome() {
     currentPage = "home";
-    currentPosts = null
+    currentPosts = null;
     document.getElementById("view").innerHTML = home.body; 
 
     crawler.fetchTags()
         .then((data) => {
             tags = data;
             fillTags(data);
-            return
+            return;
         })
         .then(() => {    
             fillLoader();
             crawler.fetchHome()
                 .then((data) => {
                     fillPosts(data);
-                })
-        })
+                });
+        });
 }
 
 function goPiggyList(){
     currentPage = "piggy-list";
     currentPosts = null;
     document.getElementById("view").innerHTML = piggyList.body; 
-    fillSavedTags()
+    fillSavedTags();
 }
 
 // Main porgram calls
@@ -79,16 +79,17 @@ ipcRenderer.on('loadNewPosts', (event) => {
 
 // Event handlers
 function openLink(url) {
-    shell.openExternal(url)
+    shell.openExternal(url);
 }
 function getTag(e, tag) {
     e.stopPropagation();
-    fillLoader()
+    fillLoader();
+
     if (currentPage === "home") {
         crawler.fetchFeedByTag(tag.replace(/#/g, ''))
             .then((data) => {
                 fillPosts(data);
-            })
+            });
     } else {
         fillPosts(filterByTags(tag));
     }
@@ -101,7 +102,7 @@ function savePost(e,i) {
         // Check if already saved
         if (currentPosts[i].saved) {
             let posts = store.get('posts');
-            posts = posts.filter(post => post.link !== currentPosts[i].link)
+            posts = posts.filter(post => post.link !== currentPosts[i].link);
             store.set("posts",posts);
             sendToast("removed");
             updatePosts(e, i);
@@ -110,13 +111,13 @@ function savePost(e,i) {
             if (store.get('posts')) {
                 const posts = store.get('posts');
                 posts.push(currentPosts[i]);
-                store.set("posts",posts)
+                store.set("posts",posts);
                 sendToast("saved");
-                updatePosts(e,i)
+                updatePosts(e,i);
             } else {
                 const posts = [];
                 posts.push(currentPosts[i]);
-                store.set("posts",posts)
+                store.set("posts",posts);
                 sendToast("saved");
                 updatePosts(e,i)
             }
@@ -132,7 +133,7 @@ function savePost(e,i) {
     }
 }
 function openPiggyList() {
-    goPiggyList()
+    goPiggyList();
     if (store.get('posts')) {
         fillPosts(store.get('posts'));
     }
@@ -143,15 +144,15 @@ function sendToast(type) {
 
     if (type === "saved") {
         document.getElementById("toastType").innerText = "Added to";
-        document.getElementsByClassName("toast")[0].className += " toast-enter" 
+        document.getElementsByClassName("toast")[0].className += " toast-enter";
     } else if(type === "removed") {
         document.getElementById("toastType").innerText = "Removed from";
-        document.getElementsByClassName("toast")[0].className += " toast-enter" 
+        document.getElementsByClassName("toast")[0].className += " toast-enter";
     }
 }
 function settings(e) {
-    e.preventDefault()
-    menu.popup({ window: remote.getCurrentWindow() })
+    e.preventDefault();
+    menu.popup({ window: remote.getCurrentWindow() });
 }
 
 // Internal View Changer
@@ -172,12 +173,12 @@ function fillTags(data) {
     document.getElementById("tags").innerHTML = result; 
 }
 function fillSavedTags() {
-    tags = []
+    tags = [];
     const posts = store.get('posts');
     posts.forEach(post => {
         tags = tags.concat(post.tags);
-        tags = [...new Set(tags.map(o => JSON.stringify(o)))].map(s => JSON.parse(s))
-    })    
+        tags = [...new Set(tags.map(o => JSON.stringify(o)))].map(s => JSON.parse(s));
+    });
     fillTags(tags);
 }
 function hidePiggyList() {
@@ -194,7 +195,7 @@ function checkNotification() {
             document.getElementsByClassName("notification")[0].classList.remove("circle");
         }
     } else{
-        store.set('posts',[])
+        store.set('posts',[]);
     }
 }
 function updatePosts(e,i) {
@@ -208,25 +209,25 @@ function updatePosts(e,i) {
 function fillColor(posts) {
     return filterSaved(posts.map((post) => {
         post.tags = post.tags.map((tag) => {
-           coloredTag = tags.filter(colorTag => colorTag.name === tag.name);
-           if(coloredTag.length > 0) return coloredTag[0]
-           else return tag
-        })    
-        return post
+            coloredTag = tags.filter(colorTag => colorTag.name === tag.name);
+            if (coloredTag.length > 0) return coloredTag[0];
+            else return tag;
+        });
+        return post;
     }));
 }
 function filterSaved(posts) {    
     const savedPosts = store.get("posts");
     return posts.map((post) => {
         savedPosts.forEach(savedPost => {
-            if(post.link === savedPost.link){
+            if (post.link === savedPost.link){
                 post.saved = true;
             }
         });
         return post;
-    })
+    });
 }
 function filterByTags(selectedTag){    
     const posts = store.get("posts");
-    return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e))
+    return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e));
 }

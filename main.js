@@ -3,7 +3,7 @@
 const menubar = require('menubar');
 const path = require('path');
 const { ipcMain } = require('electron');
-const os = require('os')
+const os = require('os');
 
 let mb;
 
@@ -15,7 +15,7 @@ if (os.platform() === "win32") {
         height: 500,
         tooltip: "Dev 10",
         preloadWindow: true
-    })
+    });
 } else {
     mb = menubar({
         index: "file://" + path.join(__dirname, '/app/index.html'),
@@ -24,23 +24,23 @@ if (os.platform() === "win32") {
         height: 500,
         tooltip: "Dev 10",
         preloadWindow: true
-    })
+    });
 }
 
 mb.on('ready', function() {
     console.log('app is ready');
-})
+});
 
 mb.on('after-create-window', function() {
     mb.window.webContents.on('did-finish-load', () => {
-        mb.window.webContents.send("loadNewPosts")
-    })
-})
+        mb.window.webContents.send("loadNewPosts");
+    });
+});
 
 mb.on('after-show', function() {
-    mb.window.webContents.send("loadNewPosts")
-})
+    mb.window.webContents.send("loadNewPosts");
+});
 
 ipcMain.on('quit', (event, arg) => {
-    mb.app.quit()
-})
+    mb.app.quit();
+});
