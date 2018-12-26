@@ -48,7 +48,6 @@
     "yoda": "warn",
     "no-new-func": "error",
     "no-new-wrappers": "error",
-    "no-use-before-define": "error",
     "handle-callback-err": "error"
   }
 }
