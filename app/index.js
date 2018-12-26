@@ -72,7 +72,7 @@ function goPiggyList(){
 }
 
 // Main porgram calls
-ipcRenderer.on('loadNewPosts', (event) => {
+ipcRenderer.on('loadNewPosts', () => {
     checkNotification();
     goHome();
 });

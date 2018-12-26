@@ -41,6 +41,6 @@ mb.on('after-show', function() {
     mb.window.webContents.send('loadNewPosts');
 });
 
-ipcMain.on('quit', (event, arg) => {
+ipcMain.on('quit', () => {
     mb.app.quit();
 });
