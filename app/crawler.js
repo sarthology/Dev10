@@ -1,8 +1,10 @@
 'use strict';
 
-const request = require('request-promise-native');
+// DEPENDENCIES
 const cheerio = require('cheerio');
+const request = require('request-promise-native');
 
+// Global Variables
 const crawler = {};
 const options = {
     uri: 'https://dev.to',

@@ -1,5 +1,6 @@
 'use strict';
 
+// Global Variables
 const piggyList= {};
 
 piggyList.body = `<div class="piggy-list">
