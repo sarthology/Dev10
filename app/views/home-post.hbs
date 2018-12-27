@@ -1,17 +1,4 @@
-'use strict';
-
-// Global Variables
-const home = {};
-
-home.body = `<div class="tags" id="tags" style="min-height:35px">    
-        </div>
-        <div id="post-list">
-            <div class="loader">
-                <img src="../icons/loader-2.gif">
-            </div>
-        </div>`;
-
-home.post =`{{#each posts}}
+{{#each posts}}
     <div class="post" onclick="openLink('{{link}}')">
         <div class="post-info">
             <div class="author">
@@ -44,20 +31,4 @@ home.post =`{{#each posts}}
             </div>
         </div>
     </div>   
-{{/each}}`;
-
-home.tag =`{{#each tags}}
-{{#if backgroundColor}}
-    <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
-{{else}}
-    <div class="tag" onclick="getTag(event,'{{name}}')">
-{{/if}}
-        <p>{{name}}</p>
-    </div>  
-{{/each}}`;
-
-home.loader = `<div class="loader">
-<img src="../icons/loader-2.gif">
-</div>`;
-
-module.exports = home;
+{{/each}}
