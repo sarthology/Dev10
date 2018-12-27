@@ -15,7 +15,7 @@ const options = {
 
 crawler.fetchTags = () => {
     return request({ uri: 'https://dev.to/tags', transform: options.transform })
-        .then(($) => {
+        .then($ => {
             const tags = [];
             $('#articles-list').children().each((i, e) => {
                 const eachTag = {
@@ -27,9 +27,7 @@ crawler.fetchTags = () => {
             });
             return tags;
         })
-        .catch((err) => {
-            console.log(err);
-        });
+        .catch(console.error);
 };
 
     
@@ -40,12 +38,12 @@ crawler.fetchFeedByTag = tag => {
 
 function requestFeed(options) {
     return request(options)
-        .then(($) => {
+        .then($ => {
             const topPosts = [];
             $('#substories').children().each((i, e) => {
                 const tagsArray = [];
                 
-                $(e).find('.tags').children().each((i,e) => {
+                $(e).find('.tags').children().each((i, e) => {
                     tagsArray.push({ name: $(e).find('.tag').text().trim() });
                 });
                 
@@ -62,11 +60,9 @@ function requestFeed(options) {
                 
                 if (eachPost.title) topPosts.push(eachPost);
             });
-            return topPosts.slice(0,10);
+            return topPosts.slice(0, 10);
         })
-        .catch((err) => {
-            console.log(err);
-        });
+        .catch(console.error);
 }     
 
 module.exports = crawler;
