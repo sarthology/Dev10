@@ -5,8 +5,8 @@ const { ipcMain } = require('electron');
 const menubar = require('menubar');
 
 // NATIVE IMPORTS
-const path = require('path');
 const os = require('os');
+const path = require('path');
 
 // Global Variables
 let mb;

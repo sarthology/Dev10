@@ -6,15 +6,34 @@ const { Menu, MenuItem } = remote;
 const Store = require('electron-store');
 const handlebars = require('handlebars');
 
+// NATIVE IMPORTS
+const path = require('path');
+
 // MODULE IMPORTS
 const crawler = require('./crawler');
-const home = require('./views/home');
-const piggyList = require('./views/piggyList');
+const readFileSync = require('./util/readFileSync');
 
 // Global Variables
-let tags, currentPosts, currentPage;
+const home = {
+    body: readFileSync(
+        path.resolve(__dirname, './views/home-body.hbs')
+    ),
+    post: readFileSync(
+        path.resolve(__dirname, './views/home-post.hbs')
+    ),
+    tag: readFileSync(
+        path.resolve(__dirname, './views/home-tag.hbs')
+    ),
+    loader: readFileSync(
+        path.resolve(__dirname, './views/home-loader.hbs')
+    )
+};
+const piggyList = readFileSync(
+    path.resolve(__dirname, './views/piggyList.hbs')
+);
 const store = new Store();
 const menu = new Menu();
+let tags, currentPosts, currentPage;
 
 // Add menu items
 menu.append(new MenuItem({
