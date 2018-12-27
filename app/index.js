@@ -203,7 +203,7 @@ function fillSavedTags() {
 }
 function hidePiggyList() {
     if (document.getElementsByClassName('piggy-list')[0]) {
-        document.getElementById('tags').setAttribute('style','margin-top: 60px');
+        document.getElementById('tags').setAttribute('style', 'margin-top: 60px');
         document.getElementsByClassName('piggy-list')[0].remove();
     }
 }
@@ -215,7 +215,7 @@ function checkNotification() {
             document.getElementsByClassName('notification')[0].classList.remove('circle');
         }
     } else{
-        store.set('posts',[]);
+        store.set('posts', []);
     }
 }
 function updatePosts(e, i) {
@@ -247,7 +247,7 @@ function filterSaved(posts) {
         return post;
     });
 }
-function filterByTags(selectedTag){    
+function filterByTags(selectedTag) {    
     const posts = store.get('posts');
     return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e));
 }
