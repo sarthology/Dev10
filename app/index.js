@@ -114,7 +114,7 @@ function getTag(e, tag) {
         fillPosts(filterByTags(tag));
     }
 }
-function savePost(e,i) {
+function savePost(e, i) {
     e.stopPropagation();
 
     //Check Page type
@@ -131,13 +131,13 @@ function savePost(e,i) {
             if (store.get('posts')) {
                 const posts = store.get('posts');
                 posts.push(currentPosts[i]);
-                store.set('posts',posts);
+                store.set('posts', posts);
                 sendToast('saved');
                 updatePosts(e,i);
             } else {
                 const posts = [];
                 posts.push(currentPosts[i]);
-                store.set('posts',posts);
+                store.set('posts', posts);
                 sendToast('saved');
                 updatePosts(e,i);
             }
