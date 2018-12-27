@@ -29,7 +29,7 @@ const home = {
     )
 };
 const piggyList = readFileSync(
-    path.resolve(__dirname, './views/piggyList.hbs')
+    path.resolve(__dirname, './views/piggy-list.hbs')
 );
 const store = new Store();
 const menu = new Menu();
