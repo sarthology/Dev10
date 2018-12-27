@@ -114,7 +114,7 @@ function getTag(e, tag) {
         fillPosts(filterByTags(tag));
     }
 }
-function savePost(e,i) {
+function savePost(e, i) {
     e.stopPropagation();
 
     //Check Page type
@@ -127,17 +127,17 @@ function savePost(e,i) {
             sendToast('removed');
             updatePosts(e, i);
         } else {
-            //If other post exists
+            // If other post exists
             if (store.get('posts')) {
                 const posts = store.get('posts');
                 posts.push(currentPosts[i]);
-                store.set('posts',posts);
+                store.set('posts', posts);
                 sendToast('saved');
                 updatePosts(e,i);
             } else {
                 const posts = [];
                 posts.push(currentPosts[i]);
-                store.set('posts',posts);
+                store.set('posts', posts);
                 sendToast('saved');
                 updatePosts(e,i);
             }
@@ -164,10 +164,10 @@ function sendToast(type) {
 
     if (type === 'saved') {
         document.getElementById('toastType').innerText = 'Added to';
-        document.getElementsByClassName('toast')[0].className += ' toast-enter';
-    } else if(type === 'removed') {
+        document.getElementsByClassName('toast')[0].classList.add('toast-enter');
+    } else if (type === 'removed') {
         document.getElementById('toastType').innerText = 'Removed from';
-        document.getElementsByClassName('toast')[0].className += ' toast-enter';
+        document.getElementsByClassName('toast')[0].classList.add('toast-enter');
     }
 }
 function settings(e) {
@@ -203,22 +203,22 @@ function fillSavedTags() {
 }
 function hidePiggyList() {
     if (document.getElementsByClassName('piggy-list')[0]) {
-        document.getElementById('tags').setAttribute('style','margin-top:60px');
+        document.getElementById('tags').setAttribute('style', 'margin-top: 60px');
         document.getElementsByClassName('piggy-list')[0].remove();
     }
 }
 function checkNotification() {
     if (store.get('posts')) {
         if (store.get('posts').length > 0 ) {
-            document.getElementsByClassName('notification')[0].className += ' circle';
+            document.getElementsByClassName('notification')[0].classList.add('circle');
         } else {
             document.getElementsByClassName('notification')[0].classList.remove('circle');
         }
     } else{
-        store.set('posts',[]);
+        store.set('posts', []);
     }
 }
-function updatePosts(e,i) {
+function updatePosts(e, i) {
     currentPosts[i].saved = !currentPosts[i].saved;
     e.target.classList.remove(`pig-${!currentPosts[i].saved}`);
     e.target.classList.add(`pig-${currentPosts[i].saved}`);
@@ -247,7 +247,7 @@ function filterSaved(posts) {
         return post;
     });
 }
-function filterByTags(selectedTag){    
+function filterByTags(selectedTag) {    
     const posts = store.get('posts');
     return posts.filter(post => !post.tags.map(tag => tag.name === selectedTag).every(e => !e));
 }
