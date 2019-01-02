@@ -32,7 +32,7 @@ It's built in electron so the process to start this is really easy
 
 1. `npm install`
 2. `npm install electron -g`
-3. `electron .`
+3. `npm start`
 
 That's it, you will see it running in your menubar.
 

@@ -87,7 +87,7 @@ function goHome() {
 function goPiggyList(){
     currentPage = 'piggy-list';
     currentPosts = null;
-    document.getElementById('view').innerHTML = piggyList.body; 
+    document.getElementById('view').innerHTML = piggyList; 
     fillSavedTags();
 }
 
