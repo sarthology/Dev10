@@ -1,8 +1,7 @@
 'use strict';
 
 // DEPENDENCIES
-const { ipcRenderer, remote, shell } = require('electron');
-const { Menu, MenuItem } = remote;
+const { ipcRenderer, shell } = require('electron');
 const Store = require('electron-store');
 const handlebars = require('handlebars');
 
@@ -12,7 +11,7 @@ const path = require('path');
 // MODULE IMPORTS
 const crawler = require('./crawler');
 const readFileSync = require('./util/readFileSync');
-const appendMenu = require('./util/appendMenu');
+const buildMenu = require('./util/buildMenu');
 
 // Global Variables
 const home = {
@@ -33,32 +32,31 @@ const piggyList = readFileSync(
     path.resolve(__dirname, './views/piggy-list.hbs')
 );
 const store = new Store();
-const menu = new Menu();
 let tags, currentPosts, currentPage;
 
 // Add menu items
-appendMenu({
+buildMenu.appendMenu({
     label: 'Check for updates(v1.0.0)',
     click() {
         shell.openExternal('https://github.com/sarthology/Dev10/releases');
     }
 });
-appendMenu({
+buildMenu.appendMenu({
     label: 'Tweet ❤️ @Sarthology',
     click() {
         shell.openExternal('https://twitter.com/sarthology');
     }
 });
-appendMenu({
+buildMenu.appendMenu({
     label: 'Contribute',
     click() {
         shell.openExternal('https://github.com/sarthology/Dev10');
     }
 });
-appendMenu({
+buildMenu.appendMenu({
     type: 'separator'
 });
-appendMenu({
+buildMenu.appendMenu({
     label: 'Quit',
     click() {
         ipcRenderer.send('quit');
@@ -173,7 +171,7 @@ function sendToast(type) {
 }
 function settings(e) {
     e.preventDefault();
-    menu.popup({ window: remote.getCurrentWindow() });
+    buildMenu.openMenu();
 }
 
 // Internal View Changer

@@ -36,6 +36,7 @@ mb.on('ready', () => {
 });
 
 mb.on('after-create-window', () => {
+    mb.window.openDevTools()
     mb.window.webContents.on('did-finish-load', () => {
         mb.window.webContents.send('loadNewPosts');
     });
