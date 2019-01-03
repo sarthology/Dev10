@@ -12,6 +12,7 @@ const path = require('path');
 // MODULE IMPORTS
 const crawler = require('./crawler');
 const readFileSync = require('./util/readFileSync');
+const appendMenu = require('./util/appendMenu');
 
 // Global Variables
 const home = {
@@ -36,33 +37,33 @@ const menu = new Menu();
 let tags, currentPosts, currentPage;
 
 // Add menu items
-menu.append(new MenuItem({
+appendMenu({
     label: 'Check for updates(v1.0.0)',
     click() {
         shell.openExternal('https://github.com/sarthology/Dev10/releases');
     }
-}));
-menu.append(new MenuItem({
+});
+appendMenu({
     label: 'Tweet ❤️ @Sarthology',
     click() {
         shell.openExternal('https://twitter.com/sarthology');
     }
-}));
-menu.append(new MenuItem({
+});
+appendMenu({
     label: 'Contribute',
     click() {
         shell.openExternal('https://github.com/sarthology/Dev10');
     }
-}));
-menu.append(new MenuItem({
+});
+appendMenu({
     type: 'separator'
-}));
-menu.append(new MenuItem({
+});
+appendMenu({
     label: 'Quit',
     click() {
         ipcRenderer.send('quit');
     }
-}));
+});
 
 // Routes 
 function goHome() {
