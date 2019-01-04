@@ -10,36 +10,24 @@ const path = require('path');
 
 // Global Variables
 let mb;
+let options = {
+    index: `file://${path.join(__dirname, '/app/index.html')}`,
+    width: 360,
+    height: 500,
+    tooltip: 'Dev 10',
+    preloadWindow: true
+}
 
 if (os.platform() === 'win32') {
-    mb = menubar({
-        index: `file://${path.join(__dirname, '/app/index.html')}`,
-        icon: path.join(__dirname, '/icons/logowin.png'),
-        width: 360,
-        height: 500,
-        tooltip: 'Dev 10',
-        preloadWindow: true
-    });
+    options.icon = path.join(__dirname, '/icons/logowin.png');
+    mb = menubar(options);
 } else {
-    mb = menubar({
-        index: `file://${path.join(__dirname, '/app/index.html')}`,
-        icon: path.join(__dirname, '/icons/logoTemplate.png'),
-        width: 360,
-        height: 500,
-        tooltip: 'Dev 10',
-        preloadWindow: true
-    });
+    options.icon = path.join(__dirname, '/icons/logoTemplate.png')
+    mb = menubar(options);
 }
 
 mb.on('ready', () => {
     console.log('app is ready');
-});
-
-mb.on('after-create-window', () => {
-    mb.window.openDevTools()
-    mb.window.webContents.on('did-finish-load', () => {
-        mb.window.webContents.send('loadNewPosts');
-    });
 });
 
 mb.on('after-show', () => {

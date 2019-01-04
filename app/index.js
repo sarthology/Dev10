@@ -73,15 +73,11 @@ function goHome() {
         .then(data => {
             tags = data;
             fillTags(data);
-            return;
-        })
-        .then(() => {    
-            fillLoader();
             crawler.fetchHome()
                 .then(data => {
                     fillPosts(data);
                 });
-        });
+        })
 }
 function goPiggyList(){
     currentPage = 'piggy-list';
