@@ -15,9 +15,9 @@ const options = {
 
 crawler.fetchTags = () => {
     return request({
-            uri: 'https://dev.to/tags',
-            transform: options.transform
-        })
+        uri: 'https://dev.to/tags',
+        transform: options.transform
+    })
         .then($ => {
             return $('#articles-list').children().map((i, e) => {
                 return {
@@ -57,8 +57,8 @@ function requestFeed(options) {
                     saved: false
                 };
                 if (eachPost.title) {
-                    if (i === 10) false
-                    return eachPost
+                    if (i === 10) false;
+                    return eachPost;
                 }
             }).get();
         })

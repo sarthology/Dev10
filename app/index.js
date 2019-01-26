@@ -77,7 +77,7 @@ function goHome() {
                 .then(data => {
                     fillPosts(data);
                 });
-        })
+        });
 }
 function goPiggyList(){
     currentPage = 'piggy-list';
