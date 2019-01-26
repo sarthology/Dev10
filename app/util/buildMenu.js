@@ -1,7 +1,7 @@
 'use strict';
 
 // DEPENDENCIES
-const { remote } = require('electron')
+const { remote } = require('electron');
 const { Menu, MenuItem } = remote;
 
 // Global Variables
@@ -16,7 +16,7 @@ const buildMenu = {};
 
 buildMenu.appendMenu = (options) => { 
     menu.append(new MenuItem(options));
-}
+};
 
 /**
  * This is a wrapper function for the `Menu` module's `popup` function.
@@ -25,6 +25,6 @@ buildMenu.appendMenu = (options) => {
  */
 buildMenu.openMenu = () => { 
     menu.popup({ window: remote.getCurrentWindow() });
-}
+};
 
 module.exports = buildMenu;
