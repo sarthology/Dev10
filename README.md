@@ -14,9 +14,24 @@ A nifty little app that shows you the top posts on Dev.to in your menubar.
 
 
 1. Check the top posts from Dev.to right in your Menubar.
+
+![](https://i.imgur.com/YW98eZS.gif)
+
 2. Check the latest posts from top 100 tags on Dev.to.
+
+![](https://i.imgur.com/HV4SX4Y.gif)
+
 3. Save the posts in your Piggy List 🐷 to read later.
+
+![](https://i.imgur.com/Z355ASp.gif)
+
 4. Filter the saved posts using tags.
+
+![](https://i.imgur.com/dDnisLo.gif)
+
+5. **New** Dark Mode
+
+![](https://i.imgur.com/BP0YShe.gif)
 
 
 ## Prerequisites
