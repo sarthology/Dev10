@@ -1,9 +1,11 @@
 {{#each tags}}
   {{#if backgroundColor}}
     <div class="tag" style="{{backgroundColor}}{{color}}" onclick="getTag(event,'{{name}}')">
+      {{name}}
+    </div>
   {{else}}
     <div class="tag" onclick="getTag(event,'{{name}}')">
+      {{name}}
+    </div>
   {{/if}}
-  <p>{{name}}</p>
-  </div>
 {{/each}}
