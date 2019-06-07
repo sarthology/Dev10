@@ -11,7 +11,6 @@ const buildMenu = {};
 /**
  * This is a wrapper function for the `Menu` module's `append` function.
  * @param {object} options - The information to create menu 
- * @returns {null} 
  */
 
 buildMenu.appendMenu = (options) => {
@@ -20,8 +19,6 @@ buildMenu.appendMenu = (options) => {
 
 /**
  * This is a wrapper function for the `Menu` module's `popup` function.
- * @param {null} 
- * @returns {null} 
  */
 buildMenu.openMenu = () => {
   menu.popup({ window: remote.getCurrentWindow() });
