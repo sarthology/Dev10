@@ -13,7 +13,7 @@ const buildMenu = {};
  * @param {object} options - The information to create menu 
  */
 
-buildMenu.appendMenu = (options) => {
+buildMenu.appendMenu = options => {
   menu.append(new MenuItem(options));
 };
 
