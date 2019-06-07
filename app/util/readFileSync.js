@@ -9,7 +9,7 @@ const fs = require('fs');
  * @returns {string} The data read from the file
  */
 function readFileSync(file) {
-    return fs.readFileSync(file, { encoding: 'utf8' });
+  return fs.readFileSync(file, { encoding: 'utf8' });
 }
 
 module.exports = readFileSync;

@@ -15,7 +15,7 @@
     "no-eval": "error",
     "no-implied-eval": "error",
     "no-implicit-globals": "error",
-    "no-control-regex":"off",
+    "no-control-regex": "off",
     "no-empty-function": "error",
     "no-unused-vars": "warn",
     "no-undefined": "error",
@@ -27,7 +27,7 @@
     "no-tabs": "error",
     "indent": [
       "error",
-      4
+      2
     ],
     "linebreak-style": [
       "error",

@@ -14,8 +14,8 @@ const buildMenu = {};
  * @returns {null} 
  */
 
-buildMenu.appendMenu = (options) => { 
-    menu.append(new MenuItem(options));
+buildMenu.appendMenu = (options) => {
+  menu.append(new MenuItem(options));
 };
 
 /**
@@ -23,8 +23,8 @@ buildMenu.appendMenu = (options) => {
  * @param {null} 
  * @returns {null} 
  */
-buildMenu.openMenu = () => { 
-    menu.popup({ window: remote.getCurrentWindow() });
+buildMenu.openMenu = () => {
+  menu.popup({ window: remote.getCurrentWindow() });
 };
 
 module.exports = buildMenu;
