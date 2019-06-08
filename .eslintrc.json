@@ -18,6 +18,7 @@
     "no-control-regex": "off",
     "no-empty-function": "error",
     "no-unused-vars": "warn",
+    "no-var": "error",
     "no-undefined": "error",
     "no-undef-init": "error",
     "no-param-reassign": "warn",
