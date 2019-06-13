@@ -15,9 +15,10 @@
     "no-eval": "error",
     "no-implied-eval": "error",
     "no-implicit-globals": "error",
-    "no-control-regex":"off",
+    "no-control-regex": "off",
     "no-empty-function": "error",
     "no-unused-vars": "warn",
+    "no-var": "error",
     "no-undefined": "error",
     "no-undef-init": "error",
     "no-param-reassign": "warn",
@@ -27,7 +28,7 @@
     "no-tabs": "error",
     "indent": [
       "error",
-      4
+      2
     ],
     "linebreak-style": [
       "error",
@@ -40,6 +41,10 @@
     "semi": [
       "error",
       "always"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
     ],
     "block-scoped-var": "warn",
     "prefer-const": "warn",

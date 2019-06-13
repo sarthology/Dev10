@@ -30,7 +30,7 @@ let tags, currentPosts, currentPage;
 buildMenu.appendMenu({
   label: 'Toggle Dark Mode',
   click() {
-    var isDarkMode = document.getElementsByClassName('dark-mode');
+    const isDarkMode = document.getElementsByClassName('dark-mode');
     if (isDarkMode.length > 0) {
       document.body.classList.remove('dark-mode');
     } else {

@@ -6,25 +6,20 @@ const { Menu, MenuItem } = remote;
 
 // Global Variables
 const menu = new Menu();
-const buildMenu = {};
 
-/**
- * This is a wrapper function for the `Menu` module's `append` function.
- * @param {object} options - The information to create menu 
- * @returns {null} 
- */
-
-buildMenu.appendMenu = (options) => { 
+module.exports = {
+  /**
+   * This is a wrapper function for the `Menu` module's `append` function.
+   * @param {Electron.MenuItemConstructorOptions} options - The information to create menu 
+   */
+  appendMenu(options) {
     menu.append(new MenuItem(options));
-};
+  },
 
-/**
- * This is a wrapper function for the `Menu` module's `popup` function.
- * @param {null} 
- * @returns {null} 
- */
-buildMenu.openMenu = () => { 
+  /**
+   * This is a wrapper function for the `Menu` module's `popup` function.
+   */
+  openMenu() {
     menu.popup({ window: remote.getCurrentWindow() });
+  }
 };
-
-module.exports = buildMenu;
