@@ -11,7 +11,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
     "electron-store": "^2.0.0",
-    "handlebars": "^4.1.2",
+    "handlebars": "^4.4.5",
     "menubar": "^5.2.3",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
